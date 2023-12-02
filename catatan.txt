@@ -1,0 +1,15 @@
+
+
+
+1.struktur folder
+
+src = tempat menyimpan file codingan
+-pages = menyimpan halaman cth halaman login
+-components = tempat menyimpan component kecil
+-utils = menyimpan fungsi yang sering digunakan utk keperluan berulang
+-assets = tempat menyimpan img,dummy,file json
+-config = menyimpan configurasi seperti routing/configurasi API
+
+
+2.buat router pake react router,simpan di folder config dan buat file index.js
+
