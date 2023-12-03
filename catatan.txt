@@ -1,4 +1,17 @@
 
+props :  data yang bisa kita kirim ke komponen React
+dinamis: pake props untuk membuat componen yang dinamis,bikin komponen jadi lebih reusable
+
+caranya:
+1.didalam parameter func componen diberi parameter dengan kurung {} untuk mengirim props,dan atur tata letaknya didalam div
+2.cara pakai = panggil nama func componen dan propsnya juga mau di isi apa 
+cth :  <Input label= "Full Name " placeholder="Full Name" />
+
+cara membuat component dinamis dan reusable:
+1.buat func component seperti biasa
+2.buat props didalam parameter func component
+3.buat tata letak props didalam return func
+
 
 
 1.struktur folder
@@ -12,8 +25,16 @@ src = tempat menyimpan file codingan
 
 
 2.buat router pake react router,simpan di folder config dan buat file index.js
+cth : /login
 
-3.Buat func component cth pages Login didalamnya ada index.js
+3.Buat  pages Login didalamnya ada index.js
 setiap file itu ada index.js,isinya import dan export func component
 
-4.
+
+4.slicing halaman dengan sccs,dowload node-sass 
+
+5.di folder pages(cth register) ada 2 file index.js dan file scss
+index.js untuk merender component 
+file scss untuk styling
+
+6.kalo ada component yang digunakan berulang maka buat component terpisah di dalam folder component
