@@ -13,3 +13,7 @@ src = tempat menyimpan file codingan
 
 2.buat router pake react router,simpan di folder config dan buat file index.js
 
+3.Buat func component cth pages Login didalamnya ada index.js
+setiap file itu ada index.js,isinya import dan export func component
+
+4.
