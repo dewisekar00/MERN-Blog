@@ -1,5 +1,5 @@
 html, body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     font-family: 'Inter', sans-serif;
   }
@@ -14,7 +14,7 @@ box-sizing: border-box;
 
 .left {
 flex: 1;
-height: 100%;
+
 display: flex;
 align-items: center; /* Tengah secara vertikal */
 justify-content: center; 
@@ -22,7 +22,7 @@ justify-content: center;
 height: 100%;
 .bg-image{
    margin: auto;
-    width: 70%;
+    width: 60%;
     height: 70%;
     object-fit: cover;
 }
@@ -34,9 +34,9 @@ height: 100%;
   justify-content: center;
 width: 460px;
 background-color: white;
-height: 100%;
 padding: 30px;
-
+box-sizing: border-box;
+margin-right: 50px;
 .title{
     font-size: 30px;
     font-weight: bold;
@@ -45,3 +45,4 @@ padding: 30px;
 }
 
 // membagi pages register jadi 2 halaman
+// dengan scss ketika kita pake nama class cth .main-page maka akan memiliki design yang sama
