@@ -38,3 +38,14 @@ index.js untuk merender component
 file scss untuk styling
 
 6.kalo ada component yang digunakan berulang maka buat component terpisah di dalam folder component
+
+7.Main Page/Home(membuat nested routes)
+3 halaman utama di main app
+-homepage = untuk semua postingan
+-create blog
+-detail blog
+pake layout yang sama
+-header
+-footer
+
+
