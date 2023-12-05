@@ -3,19 +3,28 @@ import { Route, Routes } from 'react-router-dom';
 import CreateBlog from '../CreateBlog';
 import DetailBlog from '../DetailBlog';
 import Home from '../Home';
+import { Footer, Header } from '../../components';
+import './mainApp.scss';
 
 const MainApp = () => {
   return (
-    <div>
-      <p> Header</p>
-      <Routes>
+    <div className='main-app-wrapper'>
+   <div className='header-wrapper'>
+   <Header />
+   </div>
+   <div className='content-wrapper'>
+   <Routes>
         {/* membuat isi menjadi dinamis */}
       <Route path="/create-post" element={<CreateBlog />} />
       <Route path="/detail-post" element={<DetailBlog />} />
       <Route path="/" element={<Home />} />
 
       </Routes>
-      <p> Footer</p>
+   </div>
+<div className='footer-wrapper'>
+      
+< Footer />
+</div>
     </div>
   );
 };
