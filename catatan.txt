@@ -48,4 +48,7 @@ pake layout yang sama
 -header
 -footer
 
-
+8.ke folder Homepage: ada 3 
+-btn create post/blog
+-component list blog
+-pagination

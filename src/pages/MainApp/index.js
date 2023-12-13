@@ -9,9 +9,9 @@ import './mainApp.scss';
 const MainApp = () => {
   return (
     <div className='main-app-wrapper'>
-   <div className='header-wrapper'>
+ 
    <Header />
-   </div>
+ 
    <div className='content-wrapper'>
    <Routes>
         {/* membuat isi menjadi dinamis */}
@@ -21,10 +21,10 @@ const MainApp = () => {
 
       </Routes>
    </div>
-<div className='footer-wrapper'>
+
       
 < Footer />
-</div>
+
     </div>
   );
 };
