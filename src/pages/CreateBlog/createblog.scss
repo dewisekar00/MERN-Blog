@@ -1,0 +1,40 @@
+.button-action{
+    width: 200px;
+    margin-left: auto;
+    margin-right: 0px;
+}
+.input-title{
+    border: none;
+ color: black;
+   font-size: 20px;
+   font-family: 'inter', serif;
+   font-weight: bold;
+ margin-left: 13px;
+   width: 700px;
+}
+
+.text-area{
+    font-family: 'Hedvig Letters Serif', serif;
+    border: none;
+    width: 1000px;
+    height: auto;
+
+
+}
+textarea:focus, input:focus{
+    outline: none;
+   
+}
+.createblog-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -52,3 +52,4 @@ pake layout yang sama
 -btn create post/blog
 -component list blog
 -pagination
+ 
