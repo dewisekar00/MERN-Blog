@@ -11,7 +11,7 @@ const BlogItem = () => {
       <img src="https://i.pinimg.com/564x/2e/61/4d/2e614da6668a83dab3078fa534092cec.jpg" className="card-img-top" alt="image card" />
       <div className="card-body">
         
-        <p className=''> j anna</p>
+        <p className='author'> j anna</p>
      
 
      <h5 className="card-title fw-bold mb-2">enjoy the moment in life with slow living</h5>

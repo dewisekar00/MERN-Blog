@@ -53,3 +53,4 @@ pake layout yang sama
 -component list blog
 -pagination
  
+ 
