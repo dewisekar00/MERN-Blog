@@ -53,4 +53,12 @@ pake layout yang sama
 -component list blog
 -pagination
  
- 
+ 9.buat tampilan untuk setiap page sesuai yang diinginkan
+
+ 10.menghubungkan button ke page yang sesuai, button kasih onClick
+
+ how?
+ 1.use useNavigate from react router dom v-6
+ import { useNavigate } from 'react-router-dom'
+ 2.make a var like that   const navigate = useNavigate(); 
+ and you can use a var name inside of onClick as a func return and add /name-path

@@ -1,7 +1,12 @@
 import React from 'react'
 import './detail-blog.scss'
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/atoms/Button'
+import { Gap } from '../../components';
+
 
 const DetailBlog = () => {
+  const navigate = useNavigate();
   return (
     <div className='detail-blog-wrapper'>
      <h1 className='title'>Journaling Made a Difference in My Healing Journey </h1>
@@ -10,6 +15,10 @@ const DetailBlog = () => {
  <p className='detail-blog-text'> There are times in our lives when we have to make decisions. Difficult ones that change us forever. Have you been there? I have. More than once. And you probably have, too.
 
 It’s during these times that we need a sounding board, because these decisions can’t be made lightly. These things take a listening ear and time. But what if the decision is so personal that it’s not easy to find the right person to talk to? Or maybe we’re afraid that someone else’s opinion will somehow mislead us?</p>
+
+<Gap height={80} />
+<Button title='Back' onClick={() => navigate('/')} />
+<Gap height={60} />
     </div>
   )
 }
