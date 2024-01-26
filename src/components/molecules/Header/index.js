@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <p className='logo-app'>nanamint blog</p>
+      <p className='logo-app'>blog</p>
       <p className='menu-item' onClick={() => navigate('/login')}>Logout</p>
     </div>
   )
