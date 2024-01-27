@@ -3,9 +3,13 @@ import { BlogItem, Button, Gap } from '../../components';
 import './home.scss';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [dataBlog, setDataBlog] = useState([]);
+
+  const stateGlobal = useSelector(state => state)
+  console.log('state global' , stateGlobal)
   // manggil data dari backend
   useEffect(() => {
     Axios.get('http://localhost:3000/v1/blog/posts?page=2&perPage=5')

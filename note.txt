@@ -82,3 +82,15 @@ pake layout yang sama
   -lalu di map
 
   14.mengganti Component BlogItem dengan props
+
+  15.setup management state global dengan redux
+  -add redux react-redux toolkit
+  -set up redux:
+  a.buat folder redux di config
+  --file store.js(membuat state secara global)
+  b.selanjutnya membuat provider di file App.js(component untuk membungkus semua app kita)
+  c.cara menggunakan state global:
+  -useSelector
+
+  error: configStore is not func
+  penyebab: seharusnya pake import from bukan pake require
