@@ -99,6 +99,7 @@ pake layout yang sama
 
 17.merubah state Global dengan useDispatch lalu di isi type nya apa
 example:
+
 --> action tanpa payload
 a. const dispatch = useDispatch();
 b.tulis kode ini di useEffect {
@@ -125,3 +126,28 @@ c.component return
 
 
 19.memisahkan reducer menjadi file yang berbeda
+
+20.memisahkan action
+ isi file di action creator:  
+ 
+ export const setDataBlog = (payload) => {
+    return { 
+        type: 'UPDATE_DATA_BLOG',
+        payload}
+}
+
+panggil di component Home
+
+dispatch(setDataBlog(responseAPI.data));
+
+jadinya setDataBlog(payload) akan berisi responseAPI
+
+
+21.memanggil api didalam setDataBlog dengan redux thunk
+
+-redux thunk: berfungsi untuk menerima func yang bersifat async
+func yang punya delay untuk memberikan responsenya
+cara menggunakan nya =
+a.menambahkan redux thunk di store(middleware)
+b.didalam action creator kita bisa menambahkan func yang bersifat async (get axios)
+c.kalo udah panggil di component (dispatch di useEffect)

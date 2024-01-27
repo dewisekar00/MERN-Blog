@@ -2,29 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { BlogItem, Button, Gap } from '../../components';
 import './home.scss';
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { setDataBlog } from '../../config/redux/action';
 
 const Home = () => {
-  // memanggil homereducer aja
+  // 1.call homereducer
   const { dataBlog } = useSelector((state) => state.homeReducer);
-
+  // 2.make dispatch
   const dispatch = useDispatch();
-
-  // console.log('data blog global:', dataBlog)
 
   // manggil data dari backend
   useEffect(() => {
-    Axios.get('http://localhost:3000/v1/blog/posts?page=2&perPage=5')
-      .then((result) => {
-        const responseAPI = result.data;
-      //  pake redux
-        dispatch({ type: 'UPDATE_DATA_BLOG', payload: responseAPI.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    // 3.call dispatch from action creator
+    dispatch(setDataBlog());
+  }, [dispatch]);
+
   const navigate = useNavigate();
 
   return (
@@ -43,9 +35,9 @@ const Home = () => {
       </div>
 
       <div className="d-flex justify-content-center my-4 ">
-        <span class="material-symbols-outlined">arrow_back_ios</span>
+        <span className="material-symbols-outlined">arrow_back_ios</span>
         <Gap width={10} />
-        <span class="material-symbols-outlined">arrow_forward_ios</span>
+        <span className="material-symbols-outlined">arrow_forward_ios</span>
       </div>
       <Gap height={20} />
     </div>

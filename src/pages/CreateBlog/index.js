@@ -9,7 +9,7 @@ const CreateBlog = () => {
   return (
     <>
       <Link to="/" onClick={() => navigate('/')}>
-        <span class="material-symbols-outlined">arrow_back_ios</span>
+        <span className="material-symbols-outlined">arrow_back_ios</span>
       </Link>
 
       <div className="createblog-wrap">
