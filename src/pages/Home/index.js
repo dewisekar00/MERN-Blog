@@ -6,23 +6,19 @@ import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
-  const { dataBlogs, name } = useSelector((state) => state);
+  // memanggil homereducer aja
+  const { dataBlog } = useSelector((state) => state.homeReducer);
 
   const dispatch = useDispatch();
 
-  // console.log(dataBlogs);
-  
+  // console.log('data blog global:', dataBlog)
+
   // manggil data dari backend
   useEffect(() => {
-    setTimeout(() => {
-      dispatch({ type: 'UPDATE_NAME' });
-    }, 3000);
-
     Axios.get('http://localhost:3000/v1/blog/posts?page=2&perPage=5')
       .then((result) => {
-        console.log(result.data);
         const responseAPI = result.data;
-
+      //  pake redux
         dispatch({ type: 'UPDATE_DATA_BLOG', payload: responseAPI.data });
       })
       .catch((err) => {
@@ -38,10 +34,10 @@ const Home = () => {
           <Button title="create post" onClick={() => navigate('/create-post')} />
         </div>
       </div>
-      <p>{name}</p>
+
       <Gap height={20} />
       <div className="content-wrapper mt-5">
-        {dataBlogs.map((blog) => {
+        {dataBlog.map((blog) => {
           return <BlogItem key={blog._id} image={`http://localhost:3000/${blog.image}`} title={blog.title} body={blog.body} name={blog.author.name} date={blog.createdAt} author />;
         })}
       </div>

@@ -120,3 +120,8 @@ c.component return
 
     dispatch({type: 'UPDATE_DATA_BLOG', payload: responseAPI.data})
 
+
+18.membuat reducer lebih dari satu atau combine reducer
+
+
+19.memisahkan reducer menjadi file yang berbeda
