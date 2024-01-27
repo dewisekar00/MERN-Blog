@@ -3,21 +3,27 @@ import { BlogItem, Button, Gap } from '../../components';
 import './home.scss';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
-  const [dataBlog, setDataBlog] = useState([]);
+  const { dataBlogs, name } = useSelector((state) => state);
 
-  const stateGlobal = useSelector(state => state)
-  console.log('state global' , stateGlobal)
+  const dispatch = useDispatch();
+
+  // console.log(dataBlogs);
+  
   // manggil data dari backend
   useEffect(() => {
+    setTimeout(() => {
+      dispatch({ type: 'UPDATE_NAME' });
+    }, 3000);
+
     Axios.get('http://localhost:3000/v1/blog/posts?page=2&perPage=5')
       .then((result) => {
         console.log(result.data);
         const responseAPI = result.data;
 
-        setDataBlog(responseAPI.data);
+        dispatch({ type: 'UPDATE_DATA_BLOG', payload: responseAPI.data });
       })
       .catch((err) => {
         console.log(err);
@@ -32,17 +38,11 @@ const Home = () => {
           <Button title="create post" onClick={() => navigate('/create-post')} />
         </div>
       </div>
+      <p>{name}</p>
       <Gap height={20} />
       <div className="content-wrapper mt-5">
-        {dataBlog.map((blog) => {
-          return <BlogItem key={blog._id} image={`http://localhost:3000/${blog.image}`}
-          title={blog.title}
-          body={blog.body}
-          name={blog.author.name}
-          date={blog.createdAt
-}
-          author
-           />;
+        {dataBlogs.map((blog) => {
+          return <BlogItem key={blog._id} image={`http://localhost:3000/${blog.image}`} title={blog.title} body={blog.body} name={blog.author.name} date={blog.createdAt} author />;
         })}
       </div>
 

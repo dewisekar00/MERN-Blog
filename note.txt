@@ -94,3 +94,29 @@ pake layout yang sama
 
   error: configStore is not func
   penyebab: seharusnya pake import from bukan pake require
+
+16.membuat action/reducer untuk mengubah store (store.js)
+
+17.merubah state Global dengan useDispatch lalu di isi type nya apa
+example:
+--> action tanpa payload
+a. const dispatch = useDispatch();
+b.tulis kode ini di useEffect {
+  
+  setTimeout(() =>{
+dispatch({type: 'UPDATE_NAME'})
+  }, 3000)
+
+
+}
+
+c.component return
+ <p>{stateGlobal.name}</p> akan berubah isinya
+
+ setelah 3 detik isi state akan berubah
+
+
+ --> action dengan payload:
+
+    dispatch({type: 'UPDATE_DATA_BLOG', payload: responseAPI.data})
+
