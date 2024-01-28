@@ -151,3 +151,11 @@ cara menggunakan nya =
 a.menambahkan redux thunk di store(middleware)
 b.didalam action creator kita bisa menambahkan func yang bersifat async (get axios)
 c.kalo udah panggil di component (dispatch di useEffect)
+
+22.implementasi pagination di homepage
+-add onClick in btn
+-tambahkan state counter
+-add param di url api menjadi dinamis
+-ubah useEffect
+-add condition to setCounter
+-find the total page

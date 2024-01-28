@@ -6,18 +6,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDataBlog } from '../../config/redux/action';
 
 const Home = () => {
+  const [counter, setCounter] = useState(1);
   // 1.call homereducer
-  const { dataBlog } = useSelector((state) => state.homeReducer);
+  const { dataBlog, page } = useSelector((state) => state.homeReducer);
   // 2.make dispatch
   const dispatch = useDispatch();
 
   // manggil data dari backend
   useEffect(() => {
     // 3.call dispatch from action creator
-    dispatch(setDataBlog());
-  }, [dispatch]);
+    dispatch(setDataBlog(counter));
+  }, [counter, dispatch]);
 
   const navigate = useNavigate();
+
+  const back = () => {
+    setCounter(counter <= 1 ? 1 : counter - 1);
+  };
+
+  const next = () => {
+    // if 3 === 3 return 3 and done else + 1
+    setCounter(counter === page.totalPage ? page.totalPage : counter + 1);
+  };
 
   return (
     <div className="home-page-wrapper ">
@@ -35,11 +45,17 @@ const Home = () => {
       </div>
 
       <div className="d-flex justify-content-center my-4 ">
-        <span className="material-symbols-outlined">arrow_back_ios</span>
-        <Gap width={10} />
-        <span className="material-symbols-outlined">arrow_forward_ios</span>
+        <div className="pagination">
+          <Button title="Previous" onClick={back} />
+          <Gap width={10} />
+          <Button title="Next" onClick={next} />
+        </div>
+
+        <Gap height={20} />
       </div>
-      <Gap height={20} />
+      <p className="text-center">
+        {page.currentPage} / {page.totalPage}
+      </p>
     </div>
   );
 };
