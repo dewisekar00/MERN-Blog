@@ -1,14 +1,12 @@
-.upload{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.upload {
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-    .preview{
-       
-        width: auto;
-        height: 400px;
-        object-fit: cover;
-        display: block;
-        margin-bottom:16px ;
-        border-radius: 16px;
-    }
+  .preview {
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 16px;
+  }
 }

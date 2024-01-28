@@ -159,3 +159,11 @@ c.kalo udah panggil di component (dispatch di useEffect)
 -ubah useEffect
 -add condition to setCounter
 -find the total page
+
+
+23.add new post and upload image
+-membuat state di createBlog untuk mendapatkan value input
+-upload image
+a.buat state
+b. ke component Upload untuk membuat props
+
