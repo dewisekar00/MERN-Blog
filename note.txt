@@ -171,3 +171,20 @@ b. ke component Upload untuk membuat props
 -buat reducer
 -buat actionnya
 -panggil action dengan dispatch di component
+
+
+25.Integrasi Detail Blog Post dengan unique id:
+ada 2 cara:
+a.dengan params: lebih cepat karena langsung ke valuenya
+b.dengan fetch API:kita bisa nambahin data kaya artikel terkait atau jumlah like sesuai responseAPI yang diberikan
+
+ada 4 file yang diubah:
+-->MainApp(kasih tambahan params /:id)
+-->BlogItem
+a. tambah navigate dengan _id 
+b.lalu kirim sbg props
+-->Home(kasih tambahan _id di component <BlogItem/>)
+-DetailBlog
+  a.dapetin id param dengan useParams, 
+  b.get API, simpan di state local
+  c.dan tampilkan di tag html

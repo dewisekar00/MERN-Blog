@@ -40,7 +40,9 @@ const Home = () => {
       <Gap height={20} />
       <div className="content-wrapper mt-5">
         {dataBlog.map((blog) => {
-          return <BlogItem key={blog._id} image={`http://localhost:3000/${blog.image}`} title={blog.title} body={blog.body} name={blog.author.name} date={blog.createdAt} author />;
+          return <BlogItem key={blog._id} image={`http://localhost:3000/${blog.image}`} title={blog.title} body={blog.body} name={blog.author.name} date={blog.createdAt} _id={blog._id}
+          
+          />;
         })}
       </div>
 

@@ -16,7 +16,7 @@ const MainApp = () => {
    <Routes>
         {/* membuat isi menjadi dinamis */}
       <Route path="/create-post" element={<CreateBlog />} />
-      <Route path="/detail-post" element={<DetailBlog />} />
+      <Route path="/detail-post/:id" element={<DetailBlog />} />
       <Route path="/" element={<Home />} />
 
       </Routes>

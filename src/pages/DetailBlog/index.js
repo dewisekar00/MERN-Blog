@@ -1,26 +1,47 @@
-import React from 'react'
-import './detail-blog.scss'
-import { useNavigate } from 'react-router-dom';
-import Button from '../../components/atoms/Button'
+import React, { useEffect, useState } from 'react';
+import './detail-blog.scss';
+import { useNavigate, useParams, withRouter } from 'react-router-dom';
+import Button from '../../components/atoms/Button';
 import { Gap } from '../../components';
-
+import Axios from 'axios';
 
 const DetailBlog = () => {
+  const [data, setData] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get(`http://localhost:3000/v1/blog/post/${id}`);
+        console.log(response.data);
+        setData(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [id]);
+
   const navigate = useNavigate();
-  return (
-    <div className='detail-blog-wrapper'>
-     <h1 className='title'>Journaling Made a Difference in My Healing Journey </h1>
- <p className='author-date'>j anna - 27 nov </p>
-  < img src='https://i.pinimg.com/564x/d7/d0/8e/d7d08e8605c79bc032acd0fe2113c3e5.jpg' alt='dummy-pic' className='img' />
- <p className='detail-blog-text'> There are times in our lives when we have to make decisions. Difficult ones that change us forever. Have you been there? I have. More than once. And you probably have, too.
 
-It’s during these times that we need a sounding board, because these decisions can’t be made lightly. These things take a listening ear and time. But what if the decision is so personal that it’s not easy to find the right person to talk to? Or maybe we’re afraid that someone else’s opinion will somehow mislead us?</p>
+  if (Object.keys(data).length === 0) {
+    return <p>Loading data...</p>;
+  } else {
+    return (
+      <div className="detail-blog-wrapper">
+        <h1 className="title">{data.title}</h1>
+        <p className="author-date">
+          {data.author ? data.author.name : 'Unknown'} - {data.createdAt}
+        </p>
+        <img src={`http://localhost:3000/${data.image}`} alt="dummy-pic" className="img" />
+        <p className="detail-blog-text">{data.body}</p>
 
-<Gap height={80} />
-<Button title='Back' onClick={() => navigate('/')} />
-<Gap height={60} />
-    </div>
-  )
-}
+        <Gap height={80} />
+        <Button title="Back" onClick={() => navigate('/')} />
+        <Gap height={60} />
+      </div>
+    );
+  }
+};
 
-export default DetailBlog
+export default DetailBlog;
