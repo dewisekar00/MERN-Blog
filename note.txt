@@ -167,3 +167,7 @@ c.kalo udah panggil di component (dispatch di useEffect)
 a.buat state
 b. ke component Upload untuk membuat props
 
+24.refactor code add new BlogPost with redux:
+-buat reducer
+-buat actionnya
+-panggil action dengan dispatch di component

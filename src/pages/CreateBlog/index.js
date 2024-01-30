@@ -3,47 +3,29 @@ import { Button, Gap, Input, TextArea, Upload } from '../../components';
 import './createblog.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { postToAPI, setForm, setImgPreview } from '../../config/redux/action';
 
 const CreateBlog = () => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  // 1.buat state untuk simpan image
-  const [image, setImage] = useState('');
-  const [imagePreview, setImagePreview] = useState(null);
+// 1.panggil reducernya
+  const { form, imgPreview } = useSelector((state) => state.createBlogReducer);
+  const { title, body } = form;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(body);
-    //4.MENGIRIM 3 DATA(TITLE,BODY,IMAGE KE DATABASE)
-    const data = new FormData();
-    // menambahkan objek baru dengan append
-    data.append('title', title);
-    data.append('body', body);
-    data.append('image', image);
-
-    axios
-      .post('http://localhost:3000/v1/blog/post', data, {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      })
-      .then((res) => {
-        console.log('post success', res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // 2.ketika disubmit data akan dikirim ke action postAPI untuk dikirim ke backend
+    const updatedForm = { ...form, imgPreview };
+    postToAPI(updatedForm);
   };
-
-  //2. mengirim foto ke database dan menampilkan previewnya
 
   const onImageUpload = (e) => {
     const file = e.target.files[0];
-    setImage(file);
-    setImagePreview(URL.createObjectURL(file));
+    console.log('isi file', file);
+    // 3.gunain dispatch untuk menampilkan image
+    dispatch(setImgPreview(URL.createObjectURL(file)));
   };
 
   return (
@@ -54,14 +36,14 @@ const CreateBlog = () => {
         </Link>
         <form onSubmit={onSubmit}>
           <div className="createblog-wrap">
-            {/* 3.kasih onChange dan tampikan preview image disini */}
-            <Upload onChange={(e) => onImageUpload(e)} img={imagePreview} />
+            {/* onChange untuk dapetin img dan tampikan preview image disini */}
+            <Upload onChange={(e) => onImageUpload(e)} img={imgPreview} className="imageUpload" />
           </div>
-          <Gap height={20} />
-          <Input placeholder="Title.." className="input-title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <TextArea className="text-area" placeholder="Tell your story.." value={body} onChange={(e) => setBody(e.target.value)} />
-
-          <div className="button-action">
+       <Gap height={20} />
+       {/* dispatch value input ke action agar dikirim ke reducer */}
+          <Input placeholder="Title.." className="input-title" value={title} onChange={(e) => dispatch(setForm('title', e.target.value))} />
+          <TextArea className="text-area" placeholder="Tell your story.." value={body} onChange={(e) => dispatch(setForm('body', e.target.value))} />
+         <div className="button-action">
             <Button title="save" type="submit" />
           </div>
         </form>

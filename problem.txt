@@ -1,0 +1,46 @@
+
+> Problem:
+gambar udah tersimpan tapi belum terkirim ke redux 
+error message: 'image should upload' berarti image belum terkirim ke backend
+
+> kemungkinan penyebab error:
+
+--> Format Data yang Tidak Sesuai: Anda mengirimkan data gambar sebagai objek pada saat pengisian FormData, tetapi di sisi server, Anda mengharapkan path file. Ini adalah penyebab yang paling mungkin dari error "Image should upload".
+
+pelajaran yang didapat: jadi redux itu dia ngga nerima file image secara langsung makanya muncul error
+error issue: 
+> A state mutation was detected between dispatches," typically occurs when there's a mutation happening directly to the state object
+>  A non-serializable value was detected in an action, in the path: `formValue`: 
+--> redux ngga nerima file non- serializable
+--> maksudnya redux Redux memiliki aturan bahwa state-nya harus "serializable", artinya dapat dengan mudah diubah menjadi representasi JSON dan kemudian dikembalikan ke bentuk semula.
+--> menyimpan file yang sebenarnya (objek File) dalam state Redux, itu dianggap sebagai objek non-serializable.
+
+example:
+
+const onImageUpload = (e) => {
+
+--> ini file yang sebenarnya:
+  const file = e.target.files[0];
+
+  const imageData = {
+    name: file.name,
+    size: file.size,
+    type: file.type,
+ 
+  };
+
+ --> dan ini ketika mau kirim ke redux itu bukan file sebenarnya karena redux ngga menerima, padahal backend itu pengennya nerima file image jadi kirim file image ke backend ngga pake redux 
+
+  dispatch(setForm('image', imageData));
+};
+
+
+resolve issue: memisah file yang dikirim ke redux(bukan file sebenarnya) dan mengiirm file sebenarnya ke backend(file)
+
+solved code:
+
+    const fileInput = document.querySelector('.imageUpload');
+    const file = fileInput.files[0];
+    if (file) {
+      data.append('image', file);
+    }
