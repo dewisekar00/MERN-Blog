@@ -188,3 +188,13 @@ b.lalu kirim sbg props
   a.dapetin id param dengan useParams, 
   b.get API, simpan di state local
   c.dan tampilkan di tag html
+
+26.update blog post:
+--> ubah main route:
+create-post tambah :id? -->  /create-post/:id?
+kenapa? karena 1 component createBlog akan digunakan untuk
+createPost dan updatePost
+
+--> Tambahkan edit dan delete diblog item dengan navigasi yang mengarah ke create-post-id
+
+--> lalu ke createBlog buat state untuk menangani update true or false

@@ -39,4 +39,29 @@ export const postToAPI = (form) => {
     }
 }
 
+export const updateToAPI = (form, id) => {
+  const data = new FormData();
+  data.append('title', form.title);
+  data.append('body', form.body);
+
+  const fileInput = document.querySelector('.imageUpload');
+  const file = fileInput.files[0];
+  if (file) {
+    data.append('image', file);
+
+    Axios.put(`http://localhost:3000/v1/blog/post/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then((res) => {
+        console.log('update success', res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.error('No file selected');
+  }
+}
 // note: formType, formValue , payload adalah parameter yang dikirim dari depan

@@ -1,24 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Gap, Input, TextArea, Upload } from '../../components';
 import './createblog.scss';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { postToAPI, setForm, setImgPreview } from '../../config/redux/action';
+import { postToAPI, setForm, setImgPreview, updateToAPI } from '../../config/redux/action';
+import  Axios  from 'axios';
 
 const CreateBlog = () => {
 // 1.panggil reducernya
   const { form, imgPreview } = useSelector((state) => state.createBlogReducer);
   const { title, body } = form;
+  // a.buat state update true or false
+  const [ isUpdate, setIsUpdate] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {id} = useParams()
+
+  useEffect(() => {
+    // b.kalo ada id nya diparams berarti itu update
+    if (id) {
+      setIsUpdate(true);
+    // c.tampilkan isi value ke createblog karena kita mau update
+      const showData = async () => {
+        try {
+          const response = await Axios.get(`http://localhost:3000/v1/blog/post/${id}`);
+          const data = response.data.data;
+          dispatch(setForm('title', data.title));
+          dispatch(setForm('body', data.body));
+          dispatch(setImgPreview(`http://localhost:3000/${data.image}`));
+        } catch (err) {
+          console.log('error : ', err); 
+        }
+      };
+  
+      showData();
+    }
+  }, [dispatch, id]);
+  
 
   const onSubmit = (e) => {
     e.preventDefault();
     // 2.ketika disubmit data akan dikirim ke action postAPI untuk dikirim ke backend
-    const updatedForm = { ...form, imgPreview };
-    postToAPI(updatedForm);
+    let updatedForm = { ...form, imgPreview };
+
+    if(isUpdate){
+      //  d. kalo isUpdate maka akan dikirim updatenya lewat action
+      updateToAPI(form, id)
+      console.log('update data')
+    }else{
+      postToAPI(updatedForm);
+      console.log('create data')
+    }
+
+   
   };
 
   const onImageUpload = (e) => {
@@ -44,7 +80,7 @@ const CreateBlog = () => {
           <Input placeholder="Title.." className="input-title" value={title} onChange={(e) => dispatch(setForm('title', e.target.value))} />
           <TextArea className="text-area" placeholder="Tell your story.." value={body} onChange={(e) => dispatch(setForm('body', e.target.value))} />
          <div className="button-action">
-            <Button title="save" type="submit" />
+            <Button title={isUpdate ? "Update" : 'Simpan'} type="submit"  />
           </div>
         </form>
       </div>

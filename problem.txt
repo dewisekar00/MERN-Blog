@@ -44,3 +44,19 @@ solved code:
     if (file) {
       data.append('image', file);
     }
+
+
+
+
+
+> Problem:
+ update blog post
+
+--> 1.first time I thought the no file selected error was from the logic code not saving the image, but I was wrong,
+the logic code says that if you want to update the post you need to add the title and body of the new photo, I tried just updating the title and no file was selected, I need to fix this so it's ok to just update the title and body,
+
+--> 2. issue happen from backend
+[has been blocked by CORS policy: Method PUT is not allowed by Access-Control-Allow-Methods in preflight response.]
+
+solved: add PUT so we allowed to update
+[  res.setHeader('Access-Control-Allow-Methods', 'GET, POST,PUT,DELETE');]

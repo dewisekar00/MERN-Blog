@@ -15,7 +15,7 @@ const MainApp = () => {
    <div className='content-wrapper'>
    <Routes>
         {/* membuat isi menjadi dinamis */}
-      <Route path="/create-post" element={<CreateBlog />} />
+      <Route path="/create-post/:id?" element={<CreateBlog />} />
       <Route path="/detail-post/:id" element={<DetailBlog />} />
       <Route path="/" element={<Home />} />
 
